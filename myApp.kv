@@ -1,10 +1,46 @@
-BoxLayout:
-    orientation: 'vertical'
+<HomeScreen>:
+    BoxLayout:
+        orientation : 'vertical'
+        Label:
+            text : 'Home Screen'
+        Button:
+            text : 'Go to Product screen'
+            on_press : root.manager.current = 'product'
 
-    Label:
-        text: "Welcome to the kivy App"
-        font_size: '20sp'
-        color: 0, 1, 0, 1
+<ProductScreen>
+    BoxLayout:
+        orientation: 'vertical'
+        Label:
+            text: "Product Screen"
+        Button:
+            text: "Go to Admin Login Screen"
+            on_press: root.manager.current = 'admin'
 
-    Button:
-        text: "Useless Button"
+<AdminLoginScreen>
+    BoxLayout:
+        orientation: 'vertical'
+        TextInput:
+            id: username_input
+            hint_text: "Enter Username"
+        Button:
+            text: 'Login'
+            on_press: root.login()
+
+<OrderScreen>
+    BoxLayout:
+        orientation: 'vertical'
+        Label:
+            id: order_label
+            text: "Order Screen"
+        Button:
+            text: 'Go to Summary Screen'
+            on_press: root.manager.current = 'summary'
+
+<SummaryScreen>
+    BoxLayout:
+        orientation: 'vertical'
+        Label:
+            text: 'Summary of your order'
+        Button:
+            text: 'Go to Home'
+            on_press: root.manager.current = 'home'

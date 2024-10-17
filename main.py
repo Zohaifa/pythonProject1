@@ -10,49 +10,21 @@ from kivy.uix.label import Label
 from kivy.uix.screenmanager import ScreenManager, Screen
 
 class HomeScreen(Screen):
-    def __init__(self, **kwargs):
-        super().__init__(**kwargs)
-        self.add_widget(Button(text = 'Go to Product Screen', on_press = self.go_to_product))
-
-    def go_to_product(self, instance):
-        self.manager.current = 'product'
+    pass
 
 class ProductScreen(Screen):
-    def __init__(self, **kwargs):
-        super().__init__(**kwargs)
-        self.add_widget(Button(text = 'Go back to Home Screen', on_press = self.go_to_admin))
-
-    def go_to_admin(self, instance):
-        self.manager.current = 'admin'
+    pass
 
 class AdminLoginScreen(Screen):
-    def __init__(self, **kwargs):
-        super().__init__(**kwargs)
-        self.username = TextInput(hint_text = 'Enter username', multiline = False)
-        self.add_widget(self.username)
-        self.add_widget(Button(text = 'Login', on_press = self.login))
-
-    def login(self, instance):
-        self.manager.get_screen('order').ids.order_label.text = f'Welcome {self.username.text}'
+    def login(self):
+        self.manager.get_screen('order').ids.order_label.text = f'Welcome {self.ids.username_input.text}'
         self.manager.current = 'order'
 
 class OrderScreen(Screen):
-    def __init__(self, **kwargs):
-        super().__init__(**kwargs)
-        self.add_widget(Label(text = 'Order Screen', ids = 'order_label'))
-        self.add_widget(Button(text='go to summary', on_press = self.go_to_summary))
-
-    def go_to_summary(self, instance):
-        self.manager.current = 'summary'
+    pass
 
 class SummaryScreen(Screen):
-    def __init__(self, **kwargs):
-        super().__init__(**kwargs)
-        self.add_widget(Label(text = 'Summary of your order'))
-        self.add_widget(Button(text= 'Go to Home', on_press = self.go_to_home))
-
-    def go_to_home(self, instance):
-        self.manager.current = 'home'
+    pass
 
 class MyApp(App):
     def build(self):
