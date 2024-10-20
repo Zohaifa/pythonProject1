@@ -7,34 +7,27 @@ from kivy.uix.button import Button
 from kivy.uix.textinput import TextInput
 from kivy.uix.slider import Slider
 from kivy.uix.label import Label
-from kivy.uix.screenmanager import ScreenManager, Screen
+from kivy.uix.screenmanager import ScreenManager, Screen, SlideTransition, FadeTransition, WipeTransition, SwapTransition
+from kivy.animation import Animation
 
 class HomeScreen(Screen):
-    pass
+    def on_enter(self):
+        button = self.ids.animate_button
+        anim = Animation(size_hint = (.5, .5), duration=1) + Animation(size_hint = (.2, .2), duration = 1)
+        anim.start(button)
 
 class ProductScreen(Screen):
     pass
 
-class AdminLoginScreen(Screen):
-    def login(self):
-        self.manager.get_screen('order').ids.order_label.text = f'Welcome {self.ids.username_input.text}'
-        self.manager.current = 'order'
-
-class OrderScreen(Screen):
-    pass
-
-class SummaryScreen(Screen):
-    pass
-
 class MyApp(App):
     def build(self):
-        sm = ScreenManager()
-        sm.add_widget(HomeScreen(name = 'home'))
-        sm.add_widget(ProductScreen(name = 'product'))
-        sm.add_widget(AdminLoginScreen(name = 'admin'))
-        sm.add_widget(OrderScreen(name = 'order'))
-        sm.add_widget(SummaryScreen(name = 'summary'))
+        sm = ScreenManager(transition = SlideTransition())
+        sm.add_widget(HomeScreen(name='home'))
+        sm.add_widget(ProductScreen(name='product'))
         return sm
+
+
+
 
 
 if __name__ == '__main__':
